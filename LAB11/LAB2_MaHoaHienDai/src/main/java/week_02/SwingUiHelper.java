@@ -2,14 +2,12 @@ package week_02;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.util.function.Supplier;
 import javax.swing.BorderFactory;
@@ -66,8 +64,8 @@ public final class SwingUiHelper {
         area.setLineWrap(wrap);
         area.setWrapStyleWord(wrap);
         area.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(180, 190, 205)),
-            BorderFactory.createEmptyBorder(6, 8, 6, 8)
+                BorderFactory.createLineBorder(new Color(180, 190, 205)),
+                BorderFactory.createEmptyBorder(6, 8, 6, 8)
         ));
         return area;
     }
@@ -111,9 +109,8 @@ public final class SwingUiHelper {
         JPanel root = new JPanel(new BorderLayout(10, 12));
         root.setBorder(BorderFactory.createEmptyBorder(16, 18, 16, 18));
 
-        JPanel header = new JPanel(new GridLayout(2, 1, 0, 4));
+        JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 2));
         header.add(titleLabel(heading));
-        header.add(bodyLabel("Mã hóa và giải mã bằng thuật toán đối xứng tương ứng:"));
         root.add(header, BorderLayout.NORTH);
 
         JPanel center = new JPanel(new GridBagLayout());
@@ -130,17 +127,17 @@ public final class SwingUiHelper {
         }
 
         g.gridx = 0; g.gridy = row++; g.weightx = 0;
-        center.add(bodyLabel("Plaintext (Bản rõ):"), g);
+        center.add(bodyLabel("Plaintext:"), g);
         g.gridy = row++; g.weightx = 1.0;
         center.add(new JScrollPane(txtPlain), g);
 
         if (txtKey != null) {
             g.gridy = row++;
             JPanel pnlKey = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
-            pnlKey.add(bodyLabel("Key (Khóa):"));
+            pnlKey.add(bodyLabel("Key:"));
             pnlKey.add(txtKey);
             if (keyTooltip != null && !keyTooltip.isEmpty()) {
-                pnlKey.add(bodyLabel("(" + keyTooltip + ")"));
+                pnlKey.add(bodyLabel(keyTooltip));
             }
             center.add(pnlKey, g);
         }
@@ -151,7 +148,7 @@ public final class SwingUiHelper {
         }
 
         g.gridy = row++;
-        center.add(bodyLabel("Ciphertext (Bản mã):"), g);
+        center.add(bodyLabel("Ciphertext:"), g);
         g.gridy = row++;
         center.add(new JScrollPane(txtCipher), g);
 
@@ -172,7 +169,7 @@ public final class SwingUiHelper {
 
         frame.setContentPane(root);
         frame.pack();
-        frame.setMinimumSize(new Dimension(640, 520));
+        frame.setMinimumSize(new Dimension(640, 500));
         frame.setLocationRelativeTo(null);
     }
 }

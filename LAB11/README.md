@@ -100,23 +100,26 @@ Get-NetTCPConnection -State Listen | Where-Object { $_.LocalPort -in 1433, 14333
 
 ## 6. Hướng dẫn biên dịch và chạy chương trình Java
 
-### 6.1. Chạy bằng NetBeans
-1. Mở NetBeans -> **File -> Open Project** -> Chọn thư mục `LAB2_MaHoaHienDai` (hoặc `LAB2_MaHoaHienDai_FULL`).
-2. Nhấp chuột phải vào Project -> Chọn **Clean and Build** (Shift+F11). NetBeans sẽ tự động tải các gói `mssql-jdbc` và `bcprov-jdk18on`.
-3. Nhấn **F6** (Run Project) để khởi chạy Menu chính (`frm_Menu`).
-
-### 6.2. Chạy bằng dòng lệnh (Command Line / Terminal)
+### 6.1. Chạy nhanh bằng `run.bat` (Khuyến nghị)
+Mở Terminal tại thư mục `LAB11` rồi chạy từng form hoặc toàn bộ Menu chính:
 ```powershell
-# Di chuyển vào thư mục project
-cd LAB2_MaHoaHienDai_FULL
+# Khởi chạy cửa sổ Menu chính frm_Menu
+.\LAB2_MaHoaHienDai\run.bat frm_Menu
 
-# Biên dịch toàn bộ các lớp Java
-$cp = ".;target/classes;C:\Users\duong\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\12.8.1.jre11\mssql-jdbc-12.8.1.jre11.jar;C:\Users\duong\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.78.1\bcprov-jdk18on-1.78.1.jar"
-javac -cp $cp -d bin src/main/java/week_02/*.java
-
-# Khởi chạy cửa sổ chính frm_Menu
-java -cp "bin;$cp" week_02.frm_Menu
+# Hoặc chạy kiểm thử riêng từng bài (từ Bước 5 đến Bước 12):
+.\LAB2_MaHoaHienDai\run.bat frm_KetNoiSQL
+.\LAB2_MaHoaHienDai\run.bat frm_DES
+.\LAB2_MaHoaHienDai\run.bat frm_TripleDES
+.\LAB2_MaHoaHienDai\run.bat frm_AES
+.\LAB2_MaHoaHienDai\run.bat frm_RC4
+.\LAB2_MaHoaHienDai\run.bat frm_Twofish
+.\LAB2_MaHoaHienDai\run.bat frm_AES_CTR
 ```
+
+### 6.2. Chạy bằng NetBeans hoặc Maven
+1. Mở NetBeans -> **File -> Open Project** -> Chọn thư mục `LAB2_MaHoaHienDai`.
+2. Nhấp chuột phải vào Project -> Chọn **Clean and Build** (`Shift+F11`). Maven sẽ tự động tải các gói `mssql-jdbc` và `bcprov-jdk18on`.
+3. Nhấn **F6** (`Run Project`) để khởi chạy Menu chính (`frm_Menu`), hoặc `Shift+F6` (`Run File`) cho từng form.
 
 ---
 
@@ -157,7 +160,7 @@ py aes_cbc_gui.py
 | **2.2 TripleDES** | Key: `123456789012345678901234` (24 ký tự ASCII) | `Decrypt(Encrypt(x)) = x`. Khi xóa 1 ký tự còn 23 ký tự -> ứng dụng chặn và thông báo: *'Khóa DESede phải đúng 24 byte'*. |
 | **2.3 AES-GCM** | Đăng ký user `sinhvien01`, pass `MatKhau@2026`. Mã hóa với Key `MatKhauAES@2026` | Đăng nhập thành công, cấp Ticket 32 HEX; ghi nhận lịch sử vào SQL Server; khi sửa 1 bit bản mã, GCM lập tức quăng lỗi phát hiện giả mạo. |
 | **2.4 RC4** | Plaintext: `Plaintext`, Key: `Key` | Bản mã HEX sinh ra chính xác: **`BBF316E8D940AF0AD3`** (khớp chuẩn NIST); giải mã ra đúng `Plaintext`. |
-| **2.5 Twofish** | Key: `MySecretKey123`, IV sinh từ nút **Generate IV** (16 byte = 32 ký tự HEX) | Giải mã chính xác; tính năng Save/Open tệp lưu đúng cấu trúc 2 dòng gồm `IV=...` và bản mã; sai IV giải mã báo lỗi. |
+| **2.5 Twofish** | Key: `Twofish@Lab2`, IV sinh từ nút **Generate IV** (16 byte = 32 ký tự HEX) | Giải mã chính xác; tính năng Save/Open tệp lưu đúng cấu trúc 2 dòng gồm `IV=...` và bản mã; sai IV giải mã sai/báo lỗi. |
 | **2.6 AES-CTR (Java)** | Key 32 byte Base64 và Nonce 12 byte Base64 ngẫu nhiên | Giải mã đúng văn bản dài; độ dài bản mã đúng bằng độ dài bản rõ (không cần đệm). |
 | **2.6 AES-CBC (Python)** | Văn bản tiếng Việt dài > 1000 ký tự | Chạy `--self-test` in ra `SELF-TEST OK`; Giao diện Tkinter mã hóa và giải mã chính xác 100%. |
 
@@ -174,26 +177,21 @@ py aes_cbc_gui.py
 
 ---
 
-## 10. Hướng dẫn nộp bài trên GitHub
+## 10. Hướng dẫn nộp bài / cập nhật lên GitHub
 
-Sinh viên thực hiện nộp bài qua các bước:
+Sau khi hoàn thành dán code, quay video kiểm thử và kiểm tra chạy ổn định:
 ```bash
-# Khởi tạo kho chứa Git cục bộ
-git init
+# Di chuyển về thư mục gốc repository LAB_AT_BMHTTT
+cd c:\Users\duong\Hoc\LAB_AT_BMHTTT
 
-# Thêm toàn bộ mã nguồn, script SQL, Python, tệp báo cáo Word và README.md
+# Kiểm tra trạng thái và thêm toàn bộ mã nguồn đã hoàn thiện
+git status
 git add .
 
 # Ghi lại commit bài nộp
-git commit -m "Nop bai thuc hanh LAB 2 - Ma hoa doi xung hien dai"
+git commit -m "Complete LAB11/LAB2 source code after video verification"
 
-# Chuyển nhánh chính thành main
-git branch -M main
-
-# Liên kết với repository trên GitHub của sinh viên
-git remote add origin https://github.com/dangduongnguyen/LAB2_1150080150_DangDuongNguyen.git
-
-# Đẩy toàn bộ mã nguồn lên GitHub
-git push -u origin main
+# Đẩy toàn bộ mã nguồn lên nhánh main của Duongnguyen0808/LAB_AT_BMHTTT
+git push origin main
 ```
-*Sau khi push thành công, sao chép đường dẫn repository nộp lên hệ thống học tập của giảng viên.*
+*Link thư mục bài nộp trên GitHub: [https://github.com/Duongnguyen0808/LAB_AT_BMHTTT/tree/main/LAB11](https://github.com/Duongnguyen0808/LAB_AT_BMHTTT/tree/main/LAB11).*

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,18 +16,18 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- * Giao diện cấu hình kết nối Microsoft SQL Server.
+ * Phần 1.6a: Giao diện cấu hình kết nối Microsoft SQL Server.
  */
 public class frm_KetNoiSQL extends JFrame {
 
-    private final JTextField txt_server = SwingUiHelper.textField("127.0.0.1", 18);
-    private final JTextField txt_port = SwingUiHelper.textField("14333", 8);
-    private final JTextField txt_database = SwingUiHelper.textField("LAB2_MaHoaHienDai", 18);
-    private final JTextField txt_user = SwingUiHelper.textField("lab2_user", 18);
-    private final JPasswordField txt_password = new JPasswordField("LabUser@2026", 18);
-    private final JButton btn_test = SwingUiHelper.button("Test Connection", new Dimension(140, 32));
-    private final JButton btn_history = SwingUiHelper.button("Xem lịch sử", new Dimension(130, 32));
-    private final JLabel lbl_status = SwingUiHelper.bodyLabel("Nhập thông tin rồi bấm Test Connection.");
+    private final JTextField txt_server = SwingUiHelper.textField("127.0.0.1", 22);
+    private final JTextField txt_port = SwingUiHelper.textField("14333", 10);
+    private final JTextField txt_database = SwingUiHelper.textField("LAB2_MaHoaHienDai", 22);
+    private final JTextField txt_user = SwingUiHelper.textField("lab2_user", 22);
+    private final JPasswordField txt_password = new JPasswordField(22);
+    private final JButton btn_test = SwingUiHelper.button("Test Connection", new Dimension(150, 30));
+    private final JButton btn_history = SwingUiHelper.button("Xem lịch sử", new Dimension(130, 30));
+    private final JLabel lbl_status = SwingUiHelper.bodyLabel("Chưa kết nối.");
 
     public frm_KetNoiSQL() {
         initComponents();
@@ -39,13 +38,12 @@ public class frm_KetNoiSQL extends JFrame {
         setTitle("Kết nối Microsoft SQL Server");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel root = new JPanel(new BorderLayout(10, 14));
-        root.setBorder(BorderFactory.createEmptyBorder(16, 20, 16, 20));
+        txt_password.setFont(SwingUiHelper.FONT_MONO);
+        txt_password.setPreferredSize(new Dimension(txt_password.getPreferredSize().width, 30));
 
-        JPanel header = new JPanel(new GridLayout(2, 1, 0, 4));
-        header.add(SwingUiHelper.titleLabel("KẾT NỐI MICROSOFT SQL SERVER"));
-        header.add(SwingUiHelper.bodyLabel("Cấu hình chuỗi kết nối JDBC cho CSDL LAB2_MaHoaHienDai:"));
-        root.add(header, BorderLayout.NORTH);
+        JPanel root = new JPanel(new BorderLayout(10, 12));
+        root.setBorder(BorderFactory.createEmptyBorder(16, 20, 16, 20));
+        root.add(SwingUiHelper.titleLabel("KẾT NỐI MICROSOFT SQL SERVER"), BorderLayout.NORTH);
 
         JPanel form = new JPanel(new GridBagLayout());
         GridBagConstraints g = new GridBagConstraints();
@@ -55,7 +53,7 @@ public class frm_KetNoiSQL extends JFrame {
         g.gridx = 0; g.gridy = 0; form.add(SwingUiHelper.bodyLabel("Server:"), g);
         g.gridx = 1; form.add(txt_server, g);
 
-        g.gridx = 0; g.gridy = 1; form.add(SwingUiHelper.bodyLabel("Cổng (Port):"), g);
+        g.gridx = 0; g.gridy = 1; form.add(SwingUiHelper.bodyLabel("Port:"), g);
         g.gridx = 1; form.add(txt_port, g);
 
         g.gridx = 0; g.gridy = 2; form.add(SwingUiHelper.bodyLabel("Database:"), g);
@@ -65,7 +63,6 @@ public class frm_KetNoiSQL extends JFrame {
         g.gridx = 1; form.add(txt_user, g);
 
         g.gridx = 0; g.gridy = 4; form.add(SwingUiHelper.bodyLabel("Password:"), g);
-        txt_password.setPreferredSize(new Dimension(200, 30));
         g.gridx = 1; form.add(txt_password, g);
 
         g.gridx = 0; g.gridy = 5; g.gridwidth = 2;
@@ -76,6 +73,7 @@ public class frm_KetNoiSQL extends JFrame {
 
         root.add(form, BorderLayout.CENTER);
 
+        lbl_status.setPreferredSize(new Dimension(450, 40));
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 2));
         statusPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, java.awt.Color.LIGHT_GRAY));
         statusPanel.add(lbl_status);
@@ -83,32 +81,18 @@ public class frm_KetNoiSQL extends JFrame {
 
         setContentPane(root);
         pack();
-        setMinimumSize(new Dimension(480, 360));
+        setMinimumSize(new Dimension(490, 360));
 
         btn_test.addActionListener(e -> btn_testActionPerformed());
         btn_history.addActionListener(e -> btn_historyActionPerformed());
     }
 
     private void btn_testActionPerformed() {
-        try {
-            int port = Integer.parseInt(txt_port.getText().trim());
-            DbConfig.set(txt_server.getText().trim(), port, txt_database.getText().trim(),
-                    txt_user.getText().trim(), txt_password.getPassword());
-            String desc = DbConfig.test();
-            lbl_status.setText(desc);
-            JOptionPane.showMessageDialog(this, desc, "Kết nối thành công", JOptionPane.INFORMATION_MESSAGE);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Cổng (port) phải là số nguyên (ví dụ 14333 hoặc 1433).",
-                    "Lỗi", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            lbl_status.setText("Lỗi: " + ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Kết nối thất bại:\n" + ex.getMessage(),
-                    "Lỗi kết nối", JOptionPane.ERROR_MESSAGE);
-        }
+        // TODO (Phần 1.6 - Dán code nút Test Connection vào đây)
     }
 
     private void btn_historyActionPerformed() {
-        new frm_LichSu().setVisible(true);
+        // TODO (Phần 1.6 - Dán code nút Xem lịch sử vào đây)
     }
 
     public static void main(String[] args) {
