@@ -75,39 +75,39 @@ public class frm_Menu extends JFrame {
     }
 
     private void btn_caesarActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_Caesar().setVisible(true);)
+        new frm_Caesar().setVisible(true);// TODO (Phần 5 - Dán: new frm_Caesar().setVisible(true);)
     }
 
     private void btn_vigenereActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_Vigenere().setVisible(true);)
+        new frm_Vigenere().setVisible(true); // TODO (Phần 5 - Dán: new frm_Vigenere().setVisible(true);)
     }
 
     private void btn_railfenceActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_RailFence().setVisible(true);)
+    new frm_RailFence().setVisible(true);// TODO (Phần 5 - Dán: new frm_RailFence().setVisible(true);)
     }
 
     private void btn_playfairActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_Playfair().setVisible(true);)
+       new frm_Playfair().setVisible(true);  // TODO (Phần 5 - Dán: new frm_Playfair().setVisible(true);)
     }
 
     private void btn_transpositionActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_Transposition().setVisible(true);)
+        new frm_Transposition().setVisible(true); // TODO (Phần 5 - Dán: new frm_Transposition().setVisible(true);)
     }
 
     private void btn_autokeyActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_Autokey().setVisible(true);)
+       new frm_Autokey().setVisible(true);  // TODO (Phần 5 - Dán: new frm_Autokey().setVisible(true);)
     }
 
     private void btn_tonghopActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_TongHop().setVisible(true);)
+        new frm_TongHop().setVisible(true); // TODO (Phần 5 - Dán: new frm_TongHop().setVisible(true);)
     }
 
     private void btn_tancongActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_TanCong().setVisible(true);)
+      new frm_TanCong().setVisible(true);  // TODO (Phần 5 - Dán: new frm_TanCong().setVisible(true);)
     }
 
     private void btn_sqlActionPerformed() {
-        // TODO (Phần 5 - Dán: new frm_KetNoiSQL().setVisible(true);)
+       new frm_KetNoiSQL().setVisible(true);  // TODO (Phần 5 - Dán: new frm_KetNoiSQL().setVisible(true);)
     }
 
     public static void main(String[] args) {
