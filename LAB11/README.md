@@ -47,7 +47,6 @@ LAB11/
 │   ├── 01_Tao_CSDL.sql              # Script tạo CSDL LAB2_MaHoaHienDai và các bảng
 │   ├── 02_Tao_Tai_Khoan_SQL.sql     # Script tạo Login lab2_user (pass: LabUser@2026)
 │   └── 03_Kiem_Tra_Du_Lieu.sql      # Script kiểm tra dữ liệu sau khi mã hóa
-├── images/                          # Thư mục hình ảnh minh chứng kiểm thử
 ├── LAB2_MaHoaHienDai/               # Dự án Java Maven NetBeans
 │   ├── pom.xml                      # Cấu hình dependency Maven (MSSQL JDBC & BouncyCastle)
 │   ├── run.bat                      # File thực thi chạy nhanh ứng dụng
