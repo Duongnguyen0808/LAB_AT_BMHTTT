@@ -42,14 +42,17 @@ Bài thực hành giúp sinh viên tìm hiểu và xây dựng chương trình m
 ## 4. Cấu trúc thư mục nộp bài
 
 ```text
-LAB2_1150080150_DangDuongNguyen/
+LAB11/
 ├── 03_SQL_SERVER/
 │   ├── 01_Tao_CSDL.sql              # Script tạo CSDL LAB2_MaHoaHienDai và các bảng
 │   ├── 02_Tao_Tai_Khoan_SQL.sql     # Script tạo Login lab2_user (pass: LabUser@2026)
 │   └── 03_Kiem_Tra_Du_Lieu.sql      # Script kiểm tra dữ liệu sau khi mã hóa
-├── LAB2_MaHoaHienDai/               # Dự án Java Maven (Khung starter template theo bài học)
-│   ├── pom.xml                      # Cấu hình dependency Maven
-│   └── src/main/java/week_02/       # Giao diện Swing và các lớp thuật toán
+├── images/                          # Thư mục hình ảnh minh chứng kiểm thử
+├── LAB2_MaHoaHienDai/               # Dự án Java Maven NetBeans
+│   ├── pom.xml                      # Cấu hình dependency Maven (MSSQL JDBC & BouncyCastle)
+│   ├── run.bat                      # File thực thi chạy nhanh ứng dụng
+│   ├── .gitignore                   # Cấu hình bỏ qua thư mục build target/
+│   └── src/main/java/week_02/       # Giao diện Swing, file .form NetBeans và các lớp thuật toán
 │       ├── CipherUtil.java          # Tiện ích chuyển đổi, Base64, Hex, PBKDF2
 │       ├── FileTextIO.java          # Hộp thoại Open / Save file UTF-8
 │       ├── DbConfig.java            # Cấu hình kết nối SQL Server
@@ -62,21 +65,13 @@ LAB2_1150080150_DangDuongNguyen/
 │       ├── TwofishCipher.java       # Thuật toán Twofish (BouncyCastle)
 │       ├── AESCTRCipher.java        # Thuật toán AES CTR (Counter Mode)
 │       ├── SwingUiHelper.java       # Tiện ích dựng giao diện Swing nhất quán
-│       ├── frm_DES.java             # Giao diện DES
-│       ├── frm_TripleDES.java       # Giao diện TripleDES
-│       ├── frm_AES.java             # Giao diện AES + Đăng ký / Đăng nhập
-│       ├── frm_RC4.java             # Giao diện RC4
-│       ├── frm_Twofish.java         # Giao diện Twofish
-│       ├── frm_AES_CTR.java         # Giao diện AES CTR
-│       ├── frm_KetNoiSQL.java       # Giao diện cấu hình kết nối SQL Server
-│       ├── frm_LichSu.java          # Giao diện xem lịch sử thao tác
+│       ├── frm_*.java & frm_*.form  # Các màn hình JFrame và tệp cấu hình NetBeans GUI Builder
 │       └── frm_Menu.java            # Cửa sổ chính điều hướng toàn bộ bài Lab
-├── LAB2_MaHoaHienDai_FULL/          # Dự án Java đầy đủ 100% mã nguồn đã kiểm thử
 ├── LAB2_Python/                     # Ứng dụng Python
 │   ├── aes_cbc_gui.py               # Ứng dụng Tkinter AES-CBC & --self-test
-│   └── requirements.txt             # Danh sách thư viện phụ thuộc
-├── LAB2_JAVA_DH_CNPM2_1150080150_DangDuongNguyen.docx  # Báo cáo Word chi tiết từng bước
-├── HuongDan_ThucHanh_ChiTiet_LAB2.docx                  # Bản sao Word hướng dẫn
+│   └── requirements.txt             # Danh sách thư viện phụ thuộc (cryptography)
+├── LAB11_JAVA_DH_CNPM2_1150080150_DangDuongNguyen.docx  # Báo cáo Word chi tiết từng bước
+├── LAB2_HuongDan.docx               # Tài liệu hướng dẫn thực hành gốc của giảng viên
 └── README.md                        # Hướng dẫn chi tiết chạy chương trình
 ```
 
