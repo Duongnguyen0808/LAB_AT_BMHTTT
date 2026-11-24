@@ -88,21 +88,11 @@ public class frm_KetNoiSQL extends JFrame {
     }
 
     private void btn_testActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            int port = Integer.parseInt(txt_port.getText().trim());
-            DbConfig.set(txt_server.getText().trim(), port, txt_database.getText().trim(),
-                    txt_user.getText().trim(), txt_password.getPassword());
-            lbl_status.setText("<html>" + DbConfig.test() + "</html>");
-        } catch (Exception ex) {
-            DbConfig.clear();
-            lbl_status.setText("<html>Kết nối thất bại: " + ex.getMessage() + "</html>");
-            JOptionPane.showMessageDialog(this, ex.getMessage(),
-                    "Không kết nối được SQL Server", JOptionPane.ERROR_MESSAGE);
-        }
+        // TODO (Phần 1.5a - Dán code nút Test Connection vào đây)
     }
 
     private void btn_historyActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_LichSu().setVisible(true);
+        // TODO (Phần 1.5a - Dán: new frm_LichSu().setVisible(true);)
     }
 
     public static void main(String[] args) {

@@ -63,27 +63,27 @@ public class frm_Menu extends JFrame {
     }
 
     private void btn_rsaActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_RSA().setVisible(true);
+        // TODO (Phần 3 - Dán: new frm_RSA().setVisible(true);)
     }
 
     private void btn_eccActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_ECC().setVisible(true);
+        // TODO (Phần 3 - Dán: new frm_ECC().setVisible(true);)
     }
 
     private void btn_rsaaesActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_RSA_AES().setVisible(true);
+        // TODO (Phần 3 - Dán: new frm_RSA_AES().setVisible(true);)
     }
 
     private void btn_signatureActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_ECC_Signature().setVisible(true);
+        // TODO (Phần 3 - Dán: new frm_ECC_Signature().setVisible(true);)
     }
 
     private void btn_sqlActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_KetNoiSQL().setVisible(true);
+        // TODO (Phần 3 - Dán: new frm_KetNoiSQL().setVisible(true);)
     }
 
     private void btn_historyActionPerformed(java.awt.event.ActionEvent evt) {
-        new frm_LichSu().setVisible(true);
+        // TODO (Phần 3 - Dán: new frm_LichSu().setVisible(true);)
     }
 
     public static void main(String[] args) {

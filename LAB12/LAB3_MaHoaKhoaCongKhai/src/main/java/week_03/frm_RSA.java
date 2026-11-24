@@ -21,8 +21,7 @@ import javax.swing.JTextArea;
  */
 public class frm_RSA extends JFrame {
 
-    /** Đối tượng RSA giữ cặp khóa trong suốt thời gian form mở. */
-    private final RSACipher rsa = new RSACipher();
+    // TODO (Bài 3.2 - Dán: private final RSACipher rsa = new RSACipher();)
 
     private final JComboBox<String> cbo_bits = new JComboBox<>(new String[]{"2048", "3072"});
     private final JButton btn_generate = SwingUiHelper.button("Generate Keys", new Dimension(140, 30));
@@ -97,55 +96,15 @@ public class frm_RSA extends JFrame {
     }
 
     private void btn_generateActionPerformed(java.awt.event.ActionEvent evt) {
-        int bits = Integer.parseInt((String) cbo_bits.getSelectedItem());
-        try {
-            long start = System.currentTimeMillis();
-            rsa.generateKeys(bits);
-            long ms = System.currentTimeMillis() - start;
-            lbl_keyinfo.setText("RSA-" + bits + ": tạo khóa " + ms + " ms, tối đa " + rsa.maxPlaintextBytes() + " byte");
-            lbl_status.setText("Đã tạo cặp khóa. Khóa công khai dùng để mã hóa, khóa riêng để giải mã.");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Không tạo được khóa: " + ex.getMessage(),
-                    "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+        // TODO (Bài 3.2 - Dán code nút Generate Keys vào đây)
     }
 
     private void btn_encryptActionPerformed(java.awt.event.ActionEvent evt) {
-        String plaintext = txt_plaintext.getText();
-        if (plaintext.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Hãy nhập Plaintext trước khi mã hóa.");
-            return;
-        }
-        try {
-            String ciphertext = rsa.encrypt(plaintext);
-            txt_ciphertext.setText(ciphertext);
-            txt_ciphertext.setCaretPosition(0);
-            lbl_status.setText("Đã mã hóa RSA (" + ciphertext.length() + " ký tự Base64). "
-                    + HistoryDao.tryInsert("RSA", "ENCRYPT", plaintext.length(), true));
-        } catch (Exception ex) {
-            HistoryDao.tryInsert("RSA", "ENCRYPT", plaintext.length(), false);
-            JOptionPane.showMessageDialog(this, "Mã hóa thất bại: " + ex.getMessage(),
-                    "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+        // TODO (Bài 3.2 - Dán code nút Encrypt vào đây)
     }
 
     private void btn_decryptActionPerformed(java.awt.event.ActionEvent evt) {
-        String ciphertext = txt_ciphertext.getText();
-        if (ciphertext.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Hãy nhập Ciphertext trước khi giải mã.");
-            return;
-        }
-        try {
-            String plaintext = rsa.decrypt(ciphertext);
-            txt_plaintext.setText(plaintext);
-            txt_plaintext.setCaretPosition(0);
-            lbl_status.setText("Đã giải mã RSA. " + HistoryDao.tryInsert("RSA", "DECRYPT", ciphertext.length(), true));
-        } catch (Exception ex) {
-            HistoryDao.tryInsert("RSA", "DECRYPT", ciphertext.length(), false);
-            lbl_status.setText("Giải mã RSA THẤT BẠI (sai khóa hoặc bản mã bị sửa).");
-            JOptionPane.showMessageDialog(this, "Giải mã thất bại: sai khóa riêng hoặc bản mã bị sửa.\n" + ex,
-                    "Giải mã thất bại", JOptionPane.ERROR_MESSAGE);
-        }
+        // TODO (Bài 3.2 - Dán code nút Decrypt vào đây)
     }
 
     public static void main(String[] args) {

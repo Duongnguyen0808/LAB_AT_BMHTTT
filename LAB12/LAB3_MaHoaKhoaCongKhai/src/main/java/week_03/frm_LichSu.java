@@ -18,24 +18,15 @@ public class frm_LichSu extends JFrame {
 
     private final JTable tbl_history = new JTable();
     private final JButton btn_refresh = SwingUiHelper.button("Tải lại", new Dimension(110, 30));
-    private final JLabel lbl_status = SwingUiHelper.bodyLabel("Đang tải...");
+    private final JLabel lbl_status = SwingUiHelper.bodyLabel("Sẵn sàng.");
 
     public frm_LichSu() {
         initComponents();
         setLocationRelativeTo(null);
-        tbl_history.setModel(HistoryDao.emptyModel());
-        loadData();
+        // TODO (Phần 1.5b - Dán: tbl_history.setModel(HistoryDao.emptyModel()); loadData();)
     }
 
-    /** Đọc 50 dòng mới nhất từ SQL Server và hiện lên JTable. */
-    private void loadData() {
-        try {
-            tbl_history.setModel(HistoryDao.loadLatest(50));
-            lbl_status.setText("Đã tải " + tbl_history.getRowCount() + " dòng mới nhất từ dbo.History.");
-        } catch (java.sql.SQLException ex) {
-            lbl_status.setText("Không đọc được lịch sử: " + ex.getMessage());
-        }
-    }
+    // TODO (Phần 1.5b - Dán hàm loadData() vào đây)
 
     private void initComponents() {
         setTitle("Lịch sử thao tác (SQL Server)");
@@ -64,7 +55,7 @@ public class frm_LichSu extends JFrame {
     }
 
     private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {
-        loadData();
+        // TODO (Phần 1.5b - Dán: loadData();)
     }
 
     public static void main(String[] args) {
